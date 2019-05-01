@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import "reset";
+@import "home";
+@import "listings";
+* {
+  box-sizing: border-box;
+}
+html{
+  font-size:1rem;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: linear-gradient(135deg, rgba(140,86,121,.65) 0%, rgba(140,86,121,.65) 7%, rgba(179,70,63,.65) 100%),
+  
+  url('https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1507218132/new-york-city-skyline-CHEAPNYCFLIGHT1017.jpg?itok=BuIH6Efp');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 20px;
+  justify-content: space-between;
+  .fas{
+    margin-top: 2px;
+    margin-left: 8px;
+  }
+  .left-links {
+    display: flex;
+
+    .logo {
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color:white;
+    }
+
+    .city {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 20px;
+    }
+  }
+
+  .right-links {
+    display: flex;
+
+    .user-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .user-dropdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 20px;
+      .fas.fa-chevron-down {}
+    }
+    .post-listing-btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight:  300;
+      text-transform: capitalize;
+      padding: 15px 20px;
+      background:rgb(119,196,255);
+      color:white;
+    }
+
+  }
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
