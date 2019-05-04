@@ -1,42 +1,58 @@
 import React, { Component} from 'react'
-
+import axios from 'axios'
 export default class Home extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
+      categoriesData: []
     }
   }
 
-  renderCategories = () => {
-    let testArray = [1,2,3,4,5,6,7]
 
-    return testArray.map((item,i) => {
-      return(
-        <div className="category"key={i}>
-          <div className="title">Community</div>
-          <div className="categories-links">
-            <a href="#" className="link">Community</a>
-            <a href="#" className="link">Activities</a>
-            <a href="#" className="link">Artist</a>
-            <a href="#" className="link">Childcare</a>
-            <a href="#" className="link">Classes</a>
-            <a href="#" className="link">Events</a>
-            <a href="#" className="link">Community</a>
-            <a href="#" className="link">General</a>
-            <a href="#" className="link">Groups</a>
-            <a href="#" className="link">Local News</a>
-            <a href="#" className="link">Lost &amp; Found</a>
-            <a href="#" className="link">Community</a>
-            <a href="#" className="link">Community</a>
-          </div>
-        </div>
-      )
+  componentDidMount(){
+    const self = this;
+    const { match, history } = this.props
+    if(match.params.city === undefined){
+      history.push('/nyc')
+    }
 
+    axios.get(`/api/${match.params.city}/categories`)
+    .then(function (response) {
+      self.setState({categoriesData: response.data})
     })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+  renderCategories = () => {
+    if(this.state.categoriesData.length != 0){
+      return this.state.categoriesData.map((category,i) => {
+        const renderSubCategories = () => {
+          return category.listings.map((listing,index)=> {
+            return (
+              <a href={`${category.title}/${listing.slug}`} className="link" key={index}>
+              {listing.name}
+              </a>
+            )
+          })
+        }
+        return(
+          <div className="category"key={i}>
+            <div className="title">{category.title}</div>
+            <div className={`categories-links ${(category.title === 'jobs' || category.title === 'personals' || category.title === 'housing') ? 'single-col' : ''}`}>
+              {renderSubCategories()}
+  
+            </div>
+          </div>
+        )
+      })
+    }else {
+      return <div>Loading</div>
+    }
+
   }
   renderTags = () => {
       let testArray = [1,2,3,4,5,6,7]
-
       return testArray.map((item,i) => {
         return (
           <div className="tag" key={i}>Apple Mackbook</div>
@@ -45,6 +61,7 @@ export default class Home extends Component {
 
   }
   render () {
+
     return (
       <div className='home'>
         <div className="container">

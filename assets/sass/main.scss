@@ -2,6 +2,7 @@
 @import "reset";
 @import "home";
 @import "listings";
+@import "listing";
 * {
   box-sizing: border-box;
 }
@@ -30,14 +31,18 @@ header {
   }
   .left-links {
     display: flex;
-
-    .logo {
-      font-size: 2rem;
+    a{
       display: flex;
-      justify-content: center;
-      align-items: center;
-      color:white;
+      text-decoration: none;
+      .logo {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:white;
+      }
     }
+ 
 
     .city {
       display: flex;

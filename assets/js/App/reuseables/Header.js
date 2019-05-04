@@ -12,9 +12,12 @@ export default class Header extends Component {
       <div className="container">
         <header className='site-header'>
           <div className='left-links'>
-            <div className='logo'>
-            Classified
-            </div>
+            <a href="/">
+              <div className='logo'>
+                Classified
+              </div>
+            </a>
+    
             <div className='city'>
               New York
               <i className={`fas fa-chevron-down`}></i>
